@@ -1,0 +1,57 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Triángulo</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+
+    <ion-select
+    placeholder="Seleccione una tipo de triangulo"
+    [(ngModel)]="trianguloSeleccionado"
+  >
+    <ion-select-option value="escaleno">Escaleno</ion-select-option>
+    <ion-select-option value="equilatero">Equilátero</ion-select-option>
+  </ion-select>
+
+    <!-- Mostrar componente del triangulo escaleno -->
+    <div *ngIf="trianguloSeleccionado === 'escaleno'">
+      <ion-input
+      [(ngModel)]="ladoA"
+      type="number"
+      placeholder="Ingrese lado A"
+      label="Lado A"
+    ></ion-input>
+    <ion-input
+      [(ngModel)]="ladoB"
+      type="number"
+      placeholder="Ingrese lado B"
+      label="Lado B"
+    ></ion-input>
+    <ion-input
+      [(ngModel)]="ladoC"
+      type="number"
+      placeholder="Ingrese lado C"
+      label="Lado C"
+    ></ion-input>
+    <ion-button (click)="calcularPerimetro()">Calcular Perímetro</ion-button>
+    <ion-text *ngIf="perimetro !== null" color="primary">
+      El perímetro del triángulo escaleno es: {{ perimetro | number:'1.2-2' }}
+    </ion-text>
+    </div>
+  
+    <!-- Mostrar componente del triangulo equilatero -->
+    <div *ngIf="trianguloSeleccionado === 'equilatero'">
+      <ion-input
+      [(ngModel)]="ladoA"
+      type="number"
+      placeholder="Ingrese lado"
+      label="Lado"
+    ></ion-input>
+
+    <ion-button (click)="calcularPerimetro()">Calcular Perímetro</ion-button>
+    <ion-text *ngIf="perimetro !== null" color="primary">
+      El perímetro del triángulo equilátero es: {{ perimetro | number:'1.2-2' }}
+    </ion-text>
+    </div>
+
+  </ion-card-content>
+</ion-card>
